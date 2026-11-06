@@ -10,7 +10,10 @@ defmodule FirmowidWeb.Auth.Views.Login do
   def render(assigns) do
     ~H"""
     <div class="relative flex h-screen w-screen items-center justify-center overflow-clip">
-      <img src="/images/figurine.png" class="absolute -top-20 left-1/2 h-[135vh] opacity-10" />
+      <img
+        src="/images/figurine.png"
+        class="absolute -top-20 left-1/2 h-[135vh] object-cover opacity-10"
+      />
       <div class="z-10 max-w-sm">
         <h1 class="text-center text-2xl font-bold">
           {gettext("Go to Firmowid")}

@@ -74,7 +74,7 @@ defmodule FirmowidWeb.Auth.Components.McpConsent do
           <img
             src="/images/figurine.png"
             alt=""
-            class="absolute -top-20 left-1/2 h-[135vh] opacity-10"
+            class="absolute -top-20 left-1/2 h-[135vh] object-cover opacity-10"
           />
           <div class="z-10 w-full max-w-md rounded-2xl bg-white p-8 shadow-sm ring-1 ring-grey-200">
             <h1 class="text-center text-2xl font-bold text-grey-900">

@@ -23,7 +23,7 @@ defmodule FirmowidWeb.Organization.Views.Index do
     <div class="relative flex min-h-screen w-full items-center justify-center">
       <img
         src="/images/figurine.png"
-        class="fixed -top-20 left-1/2 h-[135vh] overflow-clip opacity-10"
+        class="fixed -top-20 left-1/2 h-[135vh] overflow-clip object-cover opacity-10"
       />
       <div class="z-10 max-w-3xl grow">
         <h1 class="mb-16 text-lg font-bold">
