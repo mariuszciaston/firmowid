@@ -26,6 +26,7 @@ defmodule FirmowidWeb.Core.Router do
   alias FirmowidWeb.Infrastructure.Hooks.Timezone
   alias Infrastructure.Controllers.AgentDiscovery
   alias Infrastructure.Controllers.LegacyIndex
+  alias Inventory.Views.EquipmentForm
   alias Invoicing.CostInvoices.Controllers.Pdf, as: CostInvoicePdf
   alias Invoicing.SalesInvoices.Controllers.Pdf
   alias Invoicing.SalesInvoices.Controllers.Shared
@@ -341,6 +342,7 @@ defmodule FirmowidWeb.Core.Router do
       live "/zarzadzanie/pracownicy/:id/dokumenty", Employee, :documents
       live "/zarzadzanie/pracownicy/:id/urlopy", Employee, :leaves
       live "/zarzadzanie/pracownicy/:id/delegacje", Employee, :delegations
+      live "/zarzadzanie/pracownicy/:id/sprzet", Employee, :equipment
 
       live "/zarzadzanie/pracownicy/:id/delegacje/:reference",
            Management.Views.Delegation,
@@ -361,6 +363,10 @@ defmodule FirmowidWeb.Core.Router do
       live "/zarzadzanie/projekty/dodaj", ProjectForm, :new
       live "/zarzadzanie/projekty/:id", Management.Views.Project, :show
       live "/zarzadzanie/projekty/:id/edycja", ProjectForm, :edit
+      live "/zarzadzanie/sprzet", Inventory.Views.EquipmentList, :index
+      live "/zarzadzanie/sprzet/dodaj", EquipmentForm, :new
+      live "/zarzadzanie/sprzet/:id", Inventory.Views.Equipment, :show
+      live "/zarzadzanie/sprzet/:id/edycja", EquipmentForm, :edit
 
       if Mix.env() == :dev do
         live "/development", Development.Views.Index, :index

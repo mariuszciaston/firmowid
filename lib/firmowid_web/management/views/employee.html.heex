@@ -39,6 +39,12 @@
       >
         {gettext("Business trips")}
       </.tab>
+      <.tab
+        patch={~p"/zarzadzanie/pracownicy/#{@employee.id}/sprzet"}
+        active={@live_action == :equipment}
+      >
+        {pgettext("employee tab", "Equipment")}
+      </.tab>
     </div>
   </div>
 
@@ -86,7 +92,11 @@
             type="button"
             variant="ghost"
             size="small"
-            phx-click="archive_employee"
+            phx-click={
+              if @held_equipment == [],
+                do: "archive_employee",
+                else: show_modal("archive-employee-modal")
+            }
           >
             <.icon name="hero-archive-box-mini" class="size-5" /> {pgettext(
               "archive action",
@@ -221,6 +231,69 @@
             delegations={@employee.member.delegations}
           />
         </.card>
+      <% :equipment -> %>
+        <.card>
+          <div class="flex items-center justify-between gap-4">
+            <h2 class="text-base/tight font-medium text-grey-900">
+              {gettext("Equipment held now")}
+            </h2>
+            <.button type="button" variant="secondary" size="small" phx-click="open_issue">
+              {gettext("Issue equipment")}
+            </.button>
+          </div>
+          <.held_equipment
+            assignments={@held_equipment}
+            link?
+            empty_text={gettext("The employee holds no company equipment.")}
+          />
+        </.card>
     <% end %>
   </div>
+
+  <.live_component
+    :if={@issuing?}
+    module={IssueModal}
+    id="issue-equipment"
+    scope={@ash_scope}
+    equipment={nil}
+    member={@employee.member}
+  />
+
+  <.modal
+    :if={@held_equipment != []}
+    id="archive-employee-modal"
+    on_cancel={hide_modal("archive-employee-modal")}
+    class="max-w-lg"
+  >
+    <:header>
+      <h3 class="text-xl font-medium">{gettext("Collect the equipment")}</h3>
+      <p class="mt-1 text-sm text-grey-700">
+        {gettext(
+          "%{name} still holds company equipment. Collect it and record the return before they leave.",
+          name: @employee.member.display_name
+        )}
+      </p>
+    </:header>
+    <div class="flex flex-col gap-8">
+      <.held_equipment assignments={@held_equipment} link? empty_text="" />
+      <div class="flex flex-col-reverse gap-4 sm:flex-row sm:justify-end">
+        <.button
+          type="button"
+          variant="tertiary"
+          size="small"
+          phx-click={hide_modal("archive-employee-modal")}
+        >
+          {gettext("Cancel")}
+        </.button>
+        <.button
+          type="button"
+          variant="secondary"
+          size="small"
+          phx-click={hide_modal("archive-employee-modal") |> JS.push("archive_employee")}
+        >
+          {gettext("Archive anyway")}
+        </.button>
+      </div>
+    </div>
+  </.modal>
 </div>

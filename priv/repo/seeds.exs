@@ -9,6 +9,7 @@
 #   seeds/month_m0.exs   — current month: unmatched transactions, KSeF showcase, 1 matched entry
 #   seeds/timetracker.exs — salaries, time tracking sessions, hours records
 #   seeds/delegations.exs — example business trips and settlement expenses
+#   seeds/inventory.exs  — example equipment issued to employees, with a return
 #   seeds/voidstack.exs  — VoidStack Labs evil org for authorization testing
 #   seeds/cafe.exs       — Kawiarnia Ziarno: small café with 10 months of unclassified data
 #
@@ -21,6 +22,7 @@ alias Firmowid.Core.Organization, as: CoreOrganization
 alias Firmowid.Seeds.Bytecraft
 alias Firmowid.Seeds.Cafe
 alias Firmowid.Seeds.Delegations
+alias Firmowid.Seeds.Inventory, as: InventorySeeds
 alias Firmowid.Seeds.MonthM0
 alias Firmowid.Seeds.MonthM1
 alias Firmowid.Seeds.MonthM2
@@ -36,7 +38,7 @@ Logger.configure(level: :info)
 seeds_dir = Path.join(__DIR__, "seeds")
 
 for file <-
-      ~w(helpers bytecraft month_m2 month_m1 month_m0 timetracker salary_matching delegations voidstack cafe) do
+      ~w(helpers bytecraft month_m2 month_m1 month_m0 timetracker salary_matching delegations inventory voidstack cafe) do
   Code.require_file("#{file}.exs", seeds_dir)
 end
 
@@ -62,6 +64,9 @@ else
 
   # — Example delegations for the primary employee —
   Delegations.seed!(ctx)
+
+  # — Example equipment held by employees —
+  InventorySeeds.seed!(ctx)
 
   # — Evil org: VoidStack Labs —
   Voidstack.seed!()

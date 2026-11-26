@@ -144,6 +144,14 @@ defmodule FirmowidWeb.Inbox.Utilities.Navigation do
         roles: [:admin]
       },
       %{
+        id: :inventory,
+        layer: :company,
+        label: pgettext("sidebar", "Equipment"),
+        icon: "laptop",
+        path: ~p"/zarzadzanie/sprzet",
+        roles: [:admin]
+      },
+      %{
         id: :analysis,
         layer: :company,
         label: pgettext("main navigation", "Analysis"),
@@ -222,6 +230,14 @@ defmodule FirmowidWeb.Inbox.Utilities.Navigation do
         label: SettingsNavigation.page_title(:leaves),
         icon: "calendar-days",
         path: SettingsNavigation.canonical_path(:leaves),
+        roles: UserRole.roles()
+      },
+      %{
+        id: :equipment,
+        layer: :me,
+        label: SettingsNavigation.page_title(:equipment),
+        icon: "laptop",
+        path: SettingsNavigation.canonical_path(:equipment),
         roles: UserRole.roles()
       },
       %{

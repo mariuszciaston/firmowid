@@ -1,14 +1,15 @@
 defmodule FirmowidWeb.Settings.Views.Index do
   @moduledoc """
-  Settings: the member's account, HR details, documents and business trips, and
-  for an admin the company details, KSeF and bank accounts, and for the owner the
-  subscription, each on a page of its own.
+  Settings: the member's account, HR details, documents, business trips and
+  equipment, and for an admin the company details, KSeF and bank accounts, and
+  for the owner the subscription, each on a page of its own.
   """
   use FirmowidWeb, :live_view
 
   import FirmowidWeb.Delegations.Components.DelegationsList
   import FirmowidWeb.Infrastructure.Flags, only: [flag_enabled?: 2]
   import FirmowidWeb.Infrastructure.Hooks.RequireOrganization, only: [guard_upload_progress: 2]
+  import FirmowidWeb.Inventory.Components.Equipment, only: [held_equipment: 1]
   import FirmowidWeb.Settings.Components.AccountTab
   import FirmowidWeb.Settings.Components.CompanyTab
   import FirmowidWeb.Settings.Components.ProfileTab
@@ -30,6 +31,7 @@ defmodule FirmowidWeb.Settings.Views.Index do
   alias Firmowid.Finances
   alias Firmowid.Finances.GoCardless.ApiClient
   alias Firmowid.Finances.Requisition
+  alias Firmowid.Inventory
   alias Firmowid.Ksef.Credential
   alias Firmowid.Payroll
   alias Firmowid.Timetracker
@@ -176,6 +178,19 @@ defmodule FirmowidWeb.Settings.Views.Index do
     do: load_once(socket, :leave_requests, &assign_profile/1)
 
   defp assign_tab_data(socket, :subscription), do: socket
+
+  defp assign_tab_data(socket, :equipment) do
+    %{current_user: current_user, ash_scope: scope} = socket.assigns
+
+    assign(
+      socket,
+      :held_equipment,
+      Inventory.list_equipment_assignments!(%{member_id: current_user.member.id, open_only: true},
+        scope: scope,
+        load: [:equipment]
+      )
+    )
+  end
 
   defp load_once(socket, loaded_key, load) do
     if Map.has_key?(socket.assigns, loaded_key), do: socket, else: load.(socket)
@@ -1168,6 +1183,11 @@ defmodule FirmowidWeb.Settings.Views.Index do
           />
         <% :delegations -> %>
           <.delegations_list delegations={@delegations} />
+        <% :equipment -> %>
+          <.held_equipment
+            assignments={@held_equipment}
+            empty_text={gettext("You have no company equipment.")}
+          />
         <% :leaves -> %>
           <.leave_section
             current_org={@current_org}

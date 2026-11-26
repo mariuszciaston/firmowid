@@ -375,6 +375,11 @@ msgstr ""
 msgid "%{employee} · %{month}"
 msgstr ""
 
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "%{equipment} from %{name}"
+msgstr ""
+
 #: lib/firmowid_web/timetracker/components/overlap.ex
 #, elixir-autogen, elixir-format
 msgid "%{first} and %{second}"
@@ -488,9 +493,19 @@ msgstr ""
 msgid "%{name} is already in your counterparties, without this identifier. Adding links the invoices to it; if it is another company, create a new one."
 msgstr ""
 
+#: lib/firmowid_web/management/views/employee.html.heex
+#, elixir-autogen, elixir-format
+msgid "%{name} still holds company equipment. Collect it and record the return before they leave."
+msgstr ""
+
 #: lib/firmowid_web/assistant/utilities/changes.ex
 #, elixir-autogen, elixir-format
 msgid "%{name} · %{quantity} %{unit} × %{price} net"
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "%{name}, since %{date}"
 msgstr ""
 
 #: lib/firmowid_web/analysis/components/ask_assistant.ex
@@ -1100,6 +1115,12 @@ msgstr ""
 msgid "Add employees"
 msgstr ""
 
+#: lib/firmowid_web/inventory/views/equipment_form.ex
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgid "Add equipment"
+msgstr ""
+
 #: lib/firmowid_web/invoicing/views/index.ex
 #, elixir-autogen, elixir-format
 msgid "Add invoice"
@@ -1108,6 +1129,11 @@ msgstr ""
 #: lib/firmowid_web/invoicing/sales_invoices/components/invoice_items.ex
 #, elixir-autogen, elixir-format
 msgid "Add item"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgid "Add laptops, phones and other equipment to know who holds them and since when."
 msgstr ""
 
 #: lib/firmowid_web/settings/components/company_tab.ex
@@ -1319,6 +1345,12 @@ msgctxt "counterparty invoice filter"
 msgid "All"
 msgstr ""
 
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment filter"
+msgid "All"
+msgstr ""
+
 #: lib/firmowid_web/delegations/components/settlement/foreign_currency.ex
 #, elixir-autogen, elixir-format
 msgid "All currencies"
@@ -1327,6 +1359,11 @@ msgstr ""
 #: lib/firmowid_web/inbox/views/index.ex
 #, elixir-autogen, elixir-format
 msgid "All done"
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#, elixir-autogen, elixir-format
+msgid "All equipment is issued. Add equipment to the inventory first."
 msgstr ""
 
 #: lib/firmowid_web/timetracker/views/index.html.heex
@@ -1633,6 +1670,11 @@ msgctxt "counterparties archive"
 msgid "Archive"
 msgstr ""
 
+#: lib/firmowid_web/management/views/employee.html.heex
+#, elixir-autogen, elixir-format
+msgid "Archive anyway"
+msgstr ""
+
 #: lib/firmowid_web/management/views/counterparties.html.heex
 #: lib/firmowid_web/management/views/counterparty_suggestions.ex
 #: lib/firmowid_web/management/views/employees.html.heex
@@ -1909,6 +1951,18 @@ msgstr ""
 #: lib/firmowid_web/landing/views/terms_of_service.ex
 #, elixir-autogen, elixir-format
 msgid "Automatically matching invoices to bank transactions"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment filter"
+msgid "Available"
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/equipment.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment status"
+msgid "Available"
 msgstr ""
 
 #: lib/firmowid_web/management/views/employee.html.heex
@@ -2386,12 +2440,16 @@ msgstr ""
 #: lib/firmowid_ui/components/ksef_connection.ex
 #: lib/firmowid_web/admin/components/settlement_components.ex
 #: lib/firmowid_web/hours_record/views/index.html.heex
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#: lib/firmowid_web/inventory/views/equipment.ex
+#: lib/firmowid_web/inventory/views/equipment_form.ex
 #: lib/firmowid_web/invoicing/components/cost_invoice_details.ex
 #: lib/firmowid_web/invoicing/components/sales_invoice_details.ex
 #: lib/firmowid_web/invoicing/sales_invoices/views/creator_counterparty.html.heex
 #: lib/firmowid_web/invoicing/sales_invoices/views/edit_form.html.heex
 #: lib/firmowid_web/management/components/roles.ex
 #: lib/firmowid_web/management/views/counterparty_form.html.heex
+#: lib/firmowid_web/management/views/employee.html.heex
 #: lib/firmowid_web/management/views/project.html.heex
 #: lib/firmowid_web/management/views/project_form.html.heex
 #: lib/firmowid_web/settings/components/account_tab.ex
@@ -2860,6 +2918,11 @@ msgstr ""
 msgid "Choose an account"
 msgstr ""
 
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#, elixir-autogen, elixir-format
+msgid "Choose an employee"
+msgstr ""
+
 #: lib/firmowid/invoicing/sales_invoice.ex
 #, elixir-autogen, elixir-format
 msgid "Choose an invoice number before issuing the invoice."
@@ -2868,6 +2931,11 @@ msgstr ""
 #: lib/firmowid/invoicing/changes/prepare_correction.ex
 #, elixir-autogen, elixir-format
 msgid "Choose an issued VAT invoice to correct."
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#, elixir-autogen, elixir-format
+msgid "Choose equipment"
 msgstr ""
 
 #: lib/firmowid_ui/components/ksef_connection.ex
@@ -3052,6 +3120,11 @@ msgstr ""
 msgid "Collapse the list"
 msgstr ""
 
+#: lib/firmowid_web/management/views/employee.html.heex
+#, elixir-autogen, elixir-format
+msgid "Collect the equipment"
+msgstr ""
+
 #: lib/firmowid_web/settings/components/profile_tab.ex
 #, elixir-autogen, elixir-format
 msgid "Come back later"
@@ -3183,6 +3256,16 @@ msgstr ""
 #: lib/firmowid_web/assistant/utilities/presentation.ex
 #, elixir-autogen, elixir-format
 msgid "Completed"
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#, elixir-autogen, elixir-format
+msgid "Condition on issue"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "Condition on return"
 msgstr ""
 
 #: lib/firmowid_web/invoicing/components/invoice_details.ex
@@ -4999,6 +5082,7 @@ msgid "EU VAT check"
 msgstr ""
 
 #: lib/firmowid_web/delegations/components/delegations_list.ex
+#: lib/firmowid_web/inventory/views/equipment.ex
 #: lib/firmowid_web/invoicing/components/sales_invoice_details.ex
 #: lib/firmowid_web/invoicing/sales_invoices/views/summary.ex
 #: lib/firmowid_web/management/views/counterparty.ex
@@ -5063,6 +5147,11 @@ msgstr ""
 #: lib/firmowid_web/settings/components/profile_tab.ex
 #, elixir-autogen, elixir-format
 msgid "Edit employment information"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment_form.ex
+#, elixir-autogen, elixir-format
+msgid "Edit equipment"
 msgstr ""
 
 #: lib/firmowid_web/settings/components/profile_tab.ex
@@ -5167,6 +5256,8 @@ msgid "Email, password, company name. Start with the free plan. No card required
 msgstr ""
 
 #: lib/firmowid_web/assistant/utilities/presentation.ex
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#: lib/firmowid_web/inventory/views/equipment.ex
 #: lib/firmowid_web/invoicing/transactions/components/salary_components.ex
 #: lib/firmowid_web/management/views/employees.html.heex
 #, elixir-autogen, elixir-format
@@ -5408,9 +5499,32 @@ msgstr ""
 msgid "Entrepreneurs maintained by the XI Commercial Division of the National Court Register of the District Court for Kraków-Śródmieście in Kraków under number"
 msgstr ""
 
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#, elixir-autogen, elixir-format
+msgid "Equipment"
+msgstr ""
+
+#: lib/firmowid_web/management/views/employee.html.heex
+#, elixir-autogen, elixir-format
+msgctxt "employee tab"
+msgid "Equipment"
+msgstr ""
+
+#: lib/firmowid_web/inbox/utilities/navigation.ex
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgctxt "sidebar"
+msgid "Equipment"
+msgstr ""
+
 #: lib/firmowid_web/analysis/components/period_details.ex
 #, elixir-autogen, elixir-format
 msgid "Equipment and office supplies"
+msgstr ""
+
+#: lib/firmowid_web/management/views/employee.html.heex
+#, elixir-autogen, elixir-format
+msgid "Equipment held now"
 msgstr ""
 
 #: lib/firmowid_web/assistant/utilities/presentation.ex
@@ -6010,9 +6124,24 @@ msgstr ""
 msgid "For everyone who issues invoices in KSeF"
 msgstr ""
 
+#: lib/firmowid_web/inventory/views/equipment_form.ex
+#, elixir-autogen, elixir-format
+msgid "For example: MacBook Pro 14"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "For example: complete, scratched lid"
+msgstr ""
+
 #: lib/firmowid_web/assistant/components/controls.ex
 #, elixir-autogen, elixir-format
 msgid "For example: how much did we spend on subcontractors in October?"
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#, elixir-autogen, elixir-format
+msgid "For example: with a charger, no scratches"
 msgstr ""
 
 #: lib/firmowid_web/delegations/components/settlement_page.ex
@@ -6413,6 +6542,12 @@ msgstr ""
 msgid "Health insurance"
 msgstr ""
 
+#: lib/firmowid_web/inventory/views/equipment.ex
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgid "Held by"
+msgstr ""
+
 #: lib/firmowid_web/assistant/components/invoice.ex
 #, elixir-autogen, elixir-format
 msgid "Hide"
@@ -6444,6 +6579,7 @@ msgid "Historical time in UTC. Check it against the ticket."
 msgstr ""
 
 #: lib/firmowid_web/assistant/components/controls.ex
+#: lib/firmowid_web/inventory/views/equipment.ex
 #, elixir-autogen, elixir-format
 msgid "History"
 msgstr ""
@@ -7205,6 +7341,11 @@ msgstr ""
 msgid "Is my result getting better month by month?"
 msgstr ""
 
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#, elixir-autogen, elixir-format
+msgid "Issue"
+msgstr ""
+
 #: lib/firmowid_web/landing/components/sections.ex
 #, elixir-autogen, elixir-format
 msgid "Issue an invoice for Północny Kod: 120 h at PLN 180 net."
@@ -7229,15 +7370,32 @@ msgstr ""
 msgid "Issue date"
 msgstr ""
 
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment"
+msgid "Issue date"
+msgstr ""
+
 #: lib/firmowid_web/landing/components/sections.ex
 #, elixir-autogen, elixir-format
 msgid "Issue date:"
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#: lib/firmowid_web/management/views/employee.html.heex
+#, elixir-autogen, elixir-format
+msgid "Issue equipment"
 msgstr ""
 
 #: lib/firmowid_web/inbox/utilities/shortcuts.ex
 #: lib/firmowid_web/invoicing/views/index.ex
 #, elixir-autogen, elixir-format
 msgid "Issue invoice"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "Issue to an employee"
 msgstr ""
 
 #: lib/firmowid_web/invoicing/transactions/components/show_components.ex
@@ -7248,6 +7406,18 @@ msgstr ""
 #: lib/firmowid_web/invoicing/components/entries_table.ex
 #, elixir-autogen, elixir-format
 msgctxt "entries table column"
+msgid "Issued"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment filter"
+msgid "Issued"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment"
 msgid "Issued"
 msgstr ""
 
@@ -7607,6 +7777,12 @@ msgstr ""
 msgid "Key differences"
 msgstr ""
 
+#: lib/firmowid_web/inventory/views/equipment_form.ex
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgid "Kind"
+msgstr ""
+
 #: lib/firmowid_web/landing/components/sections.ex
 #, elixir-autogen, elixir-format
 msgid "Labor costs visible in reports immediately"
@@ -7616,6 +7792,12 @@ msgstr ""
 #: lib/firmowid_web/settings/components/account_tab.ex
 #, elixir-autogen, elixir-format
 msgid "Language"
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/equipment.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment kind"
+msgid "Laptop"
 msgstr ""
 
 #: lib/firmowid_web/analysis/components/period_details.ex
@@ -8079,6 +8261,12 @@ msgctxt "weekday name"
 msgid "Monday"
 msgstr ""
 
+#: lib/firmowid_web/inventory/components/equipment.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment kind"
+msgid "Monitor"
+msgstr ""
+
 #: lib/firmowid_web/analysis/components/monthly_results.ex
 #: lib/firmowid_web/invoicing/transactions/components/salary_components.ex
 #, elixir-autogen, elixir-format
@@ -8173,6 +8361,11 @@ msgstr ""
 msgid "My accountant"
 msgstr ""
 
+#: lib/firmowid_web/settings/utilities/navigation.ex
+#, elixir-autogen, elixir-format
+msgid "My equipment"
+msgstr ""
+
 #: lib/firmowid_web/analysis/components/ask_assistant.ex
 #, elixir-autogen, elixir-format
 msgid "My largest cost is %{category}: %{amount} of every 100 zł of income. Where can I save on it?"
@@ -8199,6 +8392,8 @@ msgstr ""
 msgid "NIP is required"
 msgstr ""
 
+#: lib/firmowid_web/inventory/views/equipment_form.ex
+#: lib/firmowid_web/inventory/views/equipment_list.ex
 #: lib/firmowid_web/invoicing/sales_invoices/components/invoice_payment.ex
 #: lib/firmowid_web/invoicing/sales_invoices/views/creator_counterparty.html.heex
 #: lib/firmowid_web/invoicing/sales_invoices/views/edit_form.html.heex
@@ -8335,6 +8530,11 @@ msgstr ""
 #: lib/firmowid_web/settings/components/account_tab.ex
 #, elixir-autogen, elixir-format
 msgid "New email address"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment_form.ex
+#, elixir-autogen, elixir-format
+msgid "New equipment"
 msgstr ""
 
 #: lib/firmowid_web/inbox/components/queue.ex
@@ -8545,6 +8745,11 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgctxt "KRS"
 msgid "No entry under number %{number}"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgid "No equipment matches the filter."
 msgstr ""
 
 #: lib/firmowid_web/delegations/components/settlement/expense.ex
@@ -9349,6 +9554,12 @@ msgctxt "settlement summary"
 msgid "Other"
 msgstr ""
 
+#: lib/firmowid_web/inventory/components/equipment.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment kind"
+msgid "Other"
+msgstr ""
+
 #: lib/firmowid_web/management/components/employee_tax_details.ex
 #: lib/firmowid_web/payroll/components/monthly_payout.ex
 #, elixir-autogen, elixir-format
@@ -9855,6 +10066,12 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
+#: lib/firmowid_web/inventory/components/equipment.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment kind"
+msgid "Phone"
+msgstr ""
+
 #: lib/firmowid_web/management/components/profile_tab.ex
 #: lib/firmowid_web/management/views/employee.html.heex
 #: lib/firmowid_web/settings/components/profile_tab.ex
@@ -10347,6 +10564,11 @@ msgctxt "hours record badge"
 msgid "Record"
 msgstr ""
 
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "Record the return"
+msgstr ""
+
 #: lib/firmowid_web/admin/components/settlement_components.ex
 #, elixir-autogen, elixir-format
 msgid "Recorded events in the organization, independent of the selected billing month. The numbers cover the last 30 days (rolling 720 hours). These are not sign-in dates."
@@ -10638,6 +10860,12 @@ msgstr ""
 msgid "Return date"
 msgstr ""
 
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment"
+msgid "Return date"
+msgstr ""
+
 #: lib/firmowid_web/management/views/delegation.ex
 #, elixir-autogen, elixir-format
 msgid "Return for correction"
@@ -10651,6 +10879,11 @@ msgstr ""
 #: lib/firmowid_web/infrastructure/layouts.ex
 #, elixir-autogen, elixir-format
 msgid "Return to your account"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "Returned"
 msgstr ""
 
 #: lib/firmowid_web/management/views/delegation.ex
@@ -10765,6 +10998,12 @@ msgstr ""
 #: lib/firmowid_web/assistant/utilities/changes.ex
 #, elixir-autogen, elixir-format
 msgid "Running session"
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/equipment.ex
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "S/N %{serial_number}"
 msgstr ""
 
 #: lib/firmowid_web/management/components/work_distribution.ex
@@ -10916,6 +11155,7 @@ msgid "Save and switch off the rest"
 msgstr ""
 
 #: lib/firmowid_web/delegations/views/delegation_form.ex
+#: lib/firmowid_web/inventory/views/equipment_form.ex
 #: lib/firmowid_web/management/views/counterparty_form.html.heex
 #: lib/firmowid_web/management/views/project_form.html.heex
 #: lib/firmowid_web/settings/components/company_tab.ex
@@ -11298,6 +11538,12 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgctxt "month name in a date"
 msgid "September"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment_form.ex
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgid "Serial number"
 msgstr ""
 
 #: lib/firmowid_web/analysis/utilities/industry.ex
@@ -11878,6 +12124,12 @@ msgstr ""
 #: lib/firmowid_web/invoicing/sales_invoices/views/creator.ex
 #, elixir-autogen, elixir-format
 msgid "Step %{step}."
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgctxt "equipment status"
+msgid "Still held"
 msgstr ""
 
 #: lib/firmowid_web/timetracker/views/index.html.heex
@@ -12606,6 +12858,11 @@ msgstr ""
 
 #: lib/firmowid_web/management/views/employee.html.heex
 #, elixir-autogen, elixir-format
+msgid "The employee holds no company equipment."
+msgstr ""
+
+#: lib/firmowid_web/management/views/employee.html.heex
+#, elixir-autogen, elixir-format
 msgid "The employee was archived on %{date}. They have no access to the organization until an administrator restores them."
 msgstr ""
 
@@ -12622,6 +12879,17 @@ msgstr ""
 #: lib/firmowid/timetracker/validations/session_month_boundaries.ex
 #, elixir-autogen, elixir-format
 msgid "The end date must fall in the same month as the start date"
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment.ex
+#: lib/firmowid_web/management/views/employee.ex
+#, elixir-autogen, elixir-format
+msgid "The equipment has been issued."
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "The equipment has not been issued yet."
 msgstr ""
 
 #: lib/firmowid_web/infrastructure/components/error_html.ex
@@ -13032,6 +13300,11 @@ msgstr[1] ""
 msgid "The result appears once the month ends and at most two of its invoices wait for payment."
 msgstr ""
 
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "The return has been recorded."
+msgstr ""
+
 #: lib/firmowid_web/landing/views/terms_of_service.ex
 #, elixir-autogen, elixir-format
 msgid "The rules for processing personal data are set out in"
@@ -13212,6 +13485,11 @@ msgstr ""
 #: lib/firmowid_web/billing/views/plan_limit.ex
 #, elixir-autogen, elixir-format
 msgid "Then %{amount} gross once a year."
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/issue_modal.ex
+#, elixir-autogen, elixir-format
+msgid "There are no active employees to issue the equipment to."
 msgstr ""
 
 #: lib/firmowid_web/management/views/employees.html.heex
@@ -15188,6 +15466,16 @@ msgstr ""
 msgid "You have no assigned projects"
 msgstr ""
 
+#: lib/firmowid_web/settings/views/index.ex
+#, elixir-autogen, elixir-format
+msgid "You have no company equipment."
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment_list.ex
+#, elixir-autogen, elixir-format
+msgid "You have no equipment yet"
+msgstr ""
+
 #: lib/firmowid_web/management/views/projects.html.heex
 #, elixir-autogen, elixir-format
 msgid "You have no projects yet"
@@ -15519,6 +15807,11 @@ msgstr ""
 msgid "cannot be earlier than the departure date"
 msgstr ""
 
+#: lib/firmowid/inventory/equipment_assignment.ex
+#, elixir-autogen, elixir-format
+msgid "cannot be earlier than the issue date"
+msgstr ""
+
 #: lib/firmowid/timetracker/leave_request.ex
 #, elixir-autogen, elixir-format
 msgid "cannot be earlier than the start date"
@@ -15782,6 +16075,12 @@ msgstr ""
 #: lib/firmowid/blobs/validations/not_document_blob.ex
 #, elixir-autogen, elixir-format
 msgid "is a document, not a picture"
+msgstr ""
+
+#: lib/firmowid/inventory/equipment_assignment.ex
+#: lib/firmowid/inventory/validations/equipment_available.ex
+#, elixir-autogen, elixir-format
+msgid "is already issued to someone"
 msgstr ""
 
 #: lib/firmowid_ui/components/inputs.ex
@@ -16227,6 +16526,11 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgctxt "contract status"
 msgid "signed"
+msgstr ""
+
+#: lib/firmowid_web/inventory/components/equipment.ex
+#, elixir-autogen, elixir-format
+msgid "since %{date}"
 msgstr ""
 
 #: lib/firmowid_web/management/views/counterparty.ex

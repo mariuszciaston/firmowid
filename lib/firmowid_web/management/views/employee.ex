@@ -4,6 +4,7 @@ defmodule FirmowidWeb.Management.Views.Employee do
 
   import FirmowidUI.Components.Button
   import FirmowidUI.Components.Link
+  import FirmowidWeb.Inventory.Components.Equipment, only: [held_equipment: 1]
   import FirmowidWeb.Management.Components.Card
   import FirmowidWeb.Management.Components.Tab
   import Phoenix.Component, except: [link: 1]
@@ -12,6 +13,7 @@ defmodule FirmowidWeb.Management.Views.Employee do
   alias Firmowid.Blobs.Blob
   alias Firmowid.Core
   alias Firmowid.Delegations
+  alias Firmowid.Inventory
   alias Firmowid.Payroll
   alias Firmowid.TimeFormatter
   alias Firmowid.Timetracker
@@ -19,6 +21,7 @@ defmodule FirmowidWeb.Management.Views.Employee do
   alias FirmowidWeb.Core.Endpoint
   alias FirmowidWeb.Documents.Components.DocumentsSection, as: DocumentsTab
   alias FirmowidWeb.Infrastructure.Components.BlobProcessingToasts
+  alias FirmowidWeb.Inventory.Components.IssueModal
   alias FirmowidWeb.Management.Components.LeavesTab
   alias FirmowidWeb.Management.Components.ProfileTab
   alias FirmowidWeb.Management.Components.ProjectsTab
@@ -78,6 +81,8 @@ defmodule FirmowidWeb.Management.Views.Employee do
         |> assign(:projects_filter_date, selected_date)
         |> assign(:projects_view, Navigation.parse_employee_projects_view(params["widok"]))
         |> assign(:page_title, user.member.display_name)
+        |> assign(:issuing?, false)
+        |> assign_held_equipment()
       end
 
     {:noreply, socket}
@@ -107,6 +112,10 @@ defmodule FirmowidWeb.Management.Views.Employee do
     send_update(LeavesTab, id: "leaves-tab", year: String.to_integer(year))
     {:noreply, socket}
   end
+
+  def handle_event("open_issue", _params, socket), do: {:noreply, assign(socket, :issuing?, true)}
+
+  def handle_event("close_issue", _params, socket), do: {:noreply, assign(socket, :issuing?, false)}
 
   def handle_event("archive_employee", _params, socket) do
     case Core.archive_member(socket.assigns.employee.member, scope: socket.assigns.ash_scope) do
@@ -177,6 +186,19 @@ defmodule FirmowidWeb.Management.Views.Employee do
      socket
      |> push_event("copy-to-clipboard", %{text: email})
      |> LiveToast.put_toast(:success, gettext("Email address copied"))}
+  end
+
+  # What the employee holds: the equipment tab lists it and archiving reminds to collect it.
+  defp assign_held_equipment(socket) do
+    assign(
+      socket,
+      :held_equipment,
+      Inventory.list_equipment_assignments!(
+        %{member_id: socket.assigns.employee.member.id, open_only: true},
+        scope: socket.assigns.ash_scope,
+        load: [:equipment]
+      )
+    )
   end
 
   defp assign_reloaded_employee(socket) do
@@ -330,6 +352,14 @@ defmodule FirmowidWeb.Management.Views.Employee do
   # Ignore other blob broadcasts (e.g., signed contract uploads with processing_target :none)
   def handle_info(%Broadcast{payload: %Notification{resource: Blob}}, socket) do
     {:noreply, socket}
+  end
+
+  def handle_info({IssueModal, :issued}, socket) do
+    {:noreply,
+     socket
+     |> assign(:issuing?, false)
+     |> assign_held_equipment()
+     |> LiveToast.put_toast(:info, gettext("The equipment has been issued."))}
   end
 
   # The Swoosh test adapter delivers emails directly to the LiveView process.

@@ -19,6 +19,7 @@ defmodule FirmowidWeb.Settings.Utilities.Navigation do
           | :documents
           | :delegations
           | :leaves
+          | :equipment
   @type visibility_context :: %{
           required(:current_user) => %{
             required(:id) => term(),
@@ -37,7 +38,8 @@ defmodule FirmowidWeb.Settings.Utilities.Navigation do
     "role" => :roles,
     "dokumenty" => :documents,
     "delegacje" => :delegations,
-    "nieobecnosci" => :leaves
+    "nieobecnosci" => :leaves,
+    "sprzet" => :equipment
   }
 
   # Former addresses of settings pages, so that old links still lead to them.
@@ -67,6 +69,7 @@ defmodule FirmowidWeb.Settings.Utilities.Navigation do
   def canonical_path(:documents), do: ~p"/ustawienia/dokumenty"
   def canonical_path(:delegations), do: ~p"/ustawienia/delegacje"
   def canonical_path(:leaves), do: ~p"/ustawienia/nieobecnosci"
+  def canonical_path(:equipment), do: ~p"/ustawienia/sprzet"
 
   @doc "Returns the title of a settings page."
   @spec page_title(page_id()) :: String.t()
@@ -79,6 +82,7 @@ defmodule FirmowidWeb.Settings.Utilities.Navigation do
   def page_title(:documents), do: gettext("Documents")
   def page_title(:delegations), do: gettext("Business trips")
   def page_title(:leaves), do: gettext("Absences")
+  def page_title(:equipment), do: gettext("My equipment")
 
   @doc """
   Resolves a settings section slug or legacy alias.
