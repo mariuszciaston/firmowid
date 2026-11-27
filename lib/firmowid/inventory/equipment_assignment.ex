@@ -61,7 +61,11 @@ defmodule Firmowid.Inventory.EquipmentAssignment do
       accept [:equipment_id, :member_id, :issued_on, :issue_note]
 
       validate Firmowid.Core.Validations.MemberInOrganization
+      validate Firmowid.Inventory.Validations.MemberActive
       validate Firmowid.Inventory.Validations.EquipmentAvailable
+
+      validate compare(:issued_on, less_than_or_equal_to: &Firmowid.LocalDate.today/0),
+        message: gettext_noop("cannot be in the future")
     end
 
     update :return do
@@ -94,7 +98,7 @@ defmodule Firmowid.Inventory.EquipmentAssignment do
     attribute :issued_on, :date do
       public? true
       allow_nil? false
-      default &Date.utc_today/0
+      default &Firmowid.LocalDate.today/0
     end
 
     attribute :issue_note, :string do

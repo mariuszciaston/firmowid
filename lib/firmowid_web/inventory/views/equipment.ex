@@ -23,6 +23,10 @@ defmodule FirmowidWeb.Inventory.Views.Equipment do
       {:ok, nil} ->
         {:ok, push_navigate(socket, to: Navigation.list_path())}
 
+      # The id in the address is not a UUID.
+      {:error, _error} ->
+        {:ok, push_navigate(socket, to: Navigation.list_path())}
+
       {:ok, equipment} ->
         {:ok,
          socket
@@ -43,7 +47,7 @@ defmodule FirmowidWeb.Inventory.Views.Equipment do
         scope: socket.assigns.ash_scope,
         domain: Inventory,
         as: "return",
-        params: %{"returned_on" => Date.to_iso8601(Date.utc_today())}
+        params: %{"returned_on" => Date.to_iso8601(Firmowid.LocalDate.today())}
       )
 
     {:noreply, assign(socket, :return_form, form)}
@@ -65,7 +69,7 @@ defmodule FirmowidWeb.Inventory.Views.Equipment do
          |> LiveToast.put_toast(:info, gettext("The return has been recorded."))}
 
       {:error, form} ->
-        {:noreply, assign(socket, :return_form, form)}
+        {:noreply, return_failed(socket, form)}
     end
   end
 
@@ -76,6 +80,23 @@ defmodule FirmowidWeb.Inventory.Views.Equipment do
      |> assign(:issuing?, false)
      |> reload_equipment()
      |> LiveToast.put_toast(:info, gettext("The equipment has been issued."))}
+  end
+
+  # Another admin may have recorded the return meanwhile; the form's error is
+  # then not about any of its fields, so show the current state instead.
+  defp return_failed(socket, form) do
+    assignment_id = socket.assigns.equipment.current_assignment.id
+    socket = reload_equipment(socket)
+
+    case socket.assigns.equipment.current_assignment do
+      %{id: ^assignment_id} ->
+        assign(socket, :return_form, form)
+
+      _returned ->
+        socket
+        |> assign(:return_form, nil)
+        |> LiveToast.put_toast(:info, gettext("The return has already been recorded."))
+    end
   end
 
   defp reload_equipment(socket) do

@@ -32,6 +32,10 @@ defmodule FirmowidWeb.Inventory.Views.EquipmentForm do
       {:ok, nil} ->
         {:ok, push_navigate(socket, to: Navigation.list_path())}
 
+      # The id in the address is not a UUID.
+      {:error, _error} ->
+        {:ok, push_navigate(socket, to: Navigation.list_path())}
+
       {:ok, equipment} ->
         form = AshPhoenix.Form.for_update(equipment, :update, scope: scope, as: "equipment")
         {:ok, assign_form(socket, equipment, form)}

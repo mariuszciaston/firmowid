@@ -13302,6 +13302,11 @@ msgstr ""
 
 #: lib/firmowid_web/inventory/views/equipment.ex
 #, elixir-autogen, elixir-format
+msgid "The return has already been recorded."
+msgstr ""
+
+#: lib/firmowid_web/inventory/views/equipment.ex
+#, elixir-autogen, elixir-format
 msgid "The return has been recorded."
 msgstr ""
 
@@ -15812,6 +15817,11 @@ msgstr ""
 msgid "cannot be earlier than the issue date"
 msgstr ""
 
+#: lib/firmowid/inventory/validations/equipment_available.ex
+#, elixir-autogen, elixir-format
+msgid "cannot be earlier than the last return of this equipment"
+msgstr ""
+
 #: lib/firmowid/timetracker/leave_request.ex
 #, elixir-autogen, elixir-format
 msgid "cannot be earlier than the start date"
@@ -15820,6 +15830,11 @@ msgstr ""
 #: lib/firmowid/invoicing/validations/validate_buyer_id_required.ex
 #, elixir-autogen, elixir-format
 msgid "cannot be empty"
+msgstr ""
+
+#: lib/firmowid/inventory/equipment_assignment.ex
+#, elixir-autogen, elixir-format
+msgid "cannot be in the future"
 msgstr ""
 
 #: lib/firmowid_web/hours_record/components/upload_form.ex
@@ -16081,6 +16096,11 @@ msgstr ""
 #: lib/firmowid/inventory/validations/equipment_available.ex
 #, elixir-autogen, elixir-format
 msgid "is already issued to someone"
+msgstr ""
+
+#: lib/firmowid/inventory/validations/member_active.ex
+#, elixir-autogen, elixir-format
+msgid "is archived"
 msgstr ""
 
 #: lib/firmowid_ui/components/inputs.ex

@@ -50,7 +50,7 @@ defmodule FirmowidWeb.Inventory.Components.IssueModal do
         params: %{
           "equipment_id" => equipment && equipment.id,
           "member_id" => member && member.id,
-          "issued_on" => Date.to_iso8601(Date.utc_today())
+          "issued_on" => Date.to_iso8601(Firmowid.LocalDate.today())
         }
       )
 
@@ -77,7 +77,15 @@ defmodule FirmowidWeb.Inventory.Components.IssueModal do
 
   @impl true
   def render(assigns) do
-    assigns = assign(assigns, :form, to_form(assigns.form))
+    form = to_form(assigns.form)
+    # The fixed side is a hidden input, which shows no errors of its own.
+    fixed_field = if assigns.equipment, do: form[:equipment_id], else: form[:member_id]
+
+    assigns =
+      assign(assigns,
+        form: form,
+        fixed_errors: Enum.map(fixed_field.errors, &FirmowidUI.Components.Inputs.translate_error/1)
+      )
 
     ~H"""
     <div>
@@ -123,6 +131,7 @@ defmodule FirmowidWeb.Inventory.Components.IssueModal do
               options={@options}
             />
           <% end %>
+          <.error :for={message <- @fixed_errors}>{message}</.error>
           <.input type="date" field={@form[:issued_on]} label={pgettext("equipment", "Issue date")} />
           <.input
             type="textarea"

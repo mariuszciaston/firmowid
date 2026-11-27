@@ -75,14 +75,12 @@ defmodule FirmowidWeb.Management.Views.Employee do
         {:ok, current_contract} = Payroll.load_current_contract(user.member.id, scope: scope)
 
         socket
-        |> assign(:employee, user)
+        |> assign_employee(user)
         |> assign(:active_months, active_months)
         |> assign(:current_contract, current_contract)
         |> assign(:projects_filter_date, selected_date)
         |> assign(:projects_view, Navigation.parse_employee_projects_view(params["widok"]))
         |> assign(:page_title, user.member.display_name)
-        |> assign(:issuing?, false)
-        |> assign_held_equipment()
       end
 
     {:noreply, socket}
@@ -186,6 +184,17 @@ defmodule FirmowidWeb.Management.Views.Employee do
      socket
      |> push_event("copy-to-clipboard", %{text: email})
      |> LiveToast.put_toast(:success, gettext("Email address copied"))}
+  end
+
+  # Month and tab patches keep the open issue modal and the loaded equipment;
+  # only another employee's profile resets them.
+  defp assign_employee(%{assigns: %{employee: %{id: id}}} = socket, %{id: id} = user), do: assign(socket, :employee, user)
+
+  defp assign_employee(socket, user) do
+    socket
+    |> assign(:employee, user)
+    |> assign(:issuing?, false)
+    |> assign_held_equipment()
   end
 
   # What the employee holds: the equipment tab lists it and archiving reminds to collect it.

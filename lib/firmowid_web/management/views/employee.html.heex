@@ -237,7 +237,13 @@
             <h2 class="text-base/tight font-medium text-grey-900">
               {gettext("Equipment held now")}
             </h2>
-            <.button type="button" variant="secondary" size="small" phx-click="open_issue">
+            <.button
+              :if={is_nil(@employee.member.archived_at)}
+              type="button"
+              variant="secondary"
+              size="small"
+              phx-click="open_issue"
+            >
               {gettext("Issue equipment")}
             </.button>
           </div>
